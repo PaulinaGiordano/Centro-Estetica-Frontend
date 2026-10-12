@@ -1,0 +1,17 @@
+<div class="container my-5">
+  <h2 class="title text-center mb-4">{{ titulo }}</h2>
+
+  <div class="row">
+    @for (p of profesionales(); track p.idProfesional) {
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <img [src]="p.imagen || '/img/sin-foto.png'" class="card-img-top" [alt]="p.nombre">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ p.nombre }} {{ p.apellido }}</h5>
+            <p class="especialidad">{{ p.especialidad }}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

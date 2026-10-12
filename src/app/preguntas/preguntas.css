@@ -1,0 +1,29 @@
+.accordion-item {
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.accordion-button {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #4a4747;
+  background-color: #fff;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #f5e8e8;
+  color: #4a4747;
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  border-color: #c5a0a0;
+  box-shadow: 0 0 0 0.2rem rgba(197, 160, 160, 0.3);
+}
+
+.accordion-body {
+  background-color: #fff;
+  color: #4a4747;
+}

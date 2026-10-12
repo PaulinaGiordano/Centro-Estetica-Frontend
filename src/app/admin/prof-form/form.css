@@ -1,0 +1,12 @@
+.caja {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #c5a0a0;
+  box-shadow: 0 0 0 0.2rem rgba(197, 160, 160, 0.25);
+}

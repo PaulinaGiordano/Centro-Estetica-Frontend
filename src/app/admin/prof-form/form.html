@@ -1,0 +1,53 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <div class="caja">
+        <h2 class="title mb-4">{{ id ? 'Editar profesional' : 'Nuevo profesional' }}</h2>
+
+        @if (error()) {
+          <div class="alert alert-danger">{{ error() }}</div>
+        }
+
+        <form (ngSubmit)="guardar(cajaNombre.value, cajaApellido.value, cajaImagen.value, cajaEsp.value)">
+
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" #cajaNombre
+                   [value]="profesional().nombre" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Apellido</label>
+            <input type="text" class="form-control" #cajaApellido
+                   [value]="profesional().apellido" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">URL de la imagen</label>
+            <input type="text" class="form-control" #cajaImagen
+                   [value]="profesional().imagen">
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Especialidad</label>
+            <select class="form-select" #cajaEsp required>
+              <option value="">Elegí una especialidad</option>
+              @for (e of especialidades(); track e.idEspecialidad) {
+                <option [value]="e.idEspecialidad"
+                        [selected]="e.idEspecialidad === profesional().idEspecialidad">
+                  {{ e.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-login">Guardar</button>
+          <a class="btn btn-outline-secondary ms-2" routerLink="/admin/profesionales">Cancelar</a>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

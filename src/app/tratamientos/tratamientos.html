@@ -1,0 +1,17 @@
+<div class="container my-5">
+  <h2 class="title text-center mb-4">{{ titulo }}</h2>
+
+  <div class="row">
+    @for (t of tratamientos(); track t.idTratamiento) {
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ t.nombre }}</h5>
+            <p class="card-text">{{ t.descripcion }}</p>
+            <span class="duracion">{{ t.duracion }} min</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

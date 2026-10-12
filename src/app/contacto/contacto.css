@@ -1,0 +1,23 @@
+.datos h5 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #c5a0a0;
+  margin-top: 1.5rem;
+}
+
+.datos p {
+  color: #4a4747;
+}
+
+.datos a {
+  color: #4a4747;
+  text-decoration: none;
+}
+
+.datos a:hover {
+  color: #c5a0a0;
+}
+
+.form-control:focus {
+  border-color: #c5a0a0;
+  box-shadow: 0 0 0 0.2rem rgba(197, 160, 160, 0.25);
+}
