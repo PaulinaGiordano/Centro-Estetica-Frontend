@@ -1,0 +1,66 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <div class="caja">
+        <h2 class="title mb-4">{{ id ? 'Editar tratamiento' : 'Nuevo tratamiento' }}</h2>
+
+        @if (error()) {
+          <div class="alert alert-danger">{{ error() }}</div>
+        }
+
+        <form (ngSubmit)="guardar(cajaNombre.value, cajaDescripcion.value, cajaPrecio.valueAsNumber, cajaDuracion.valueAsNumber, cajaImagen.value, cajaEsp.value)">
+
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" #cajaNombre 
+                   [value]="tratamiento().nombre" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" #cajaDescripcion
+                      [value]="tratamiento().descripcion" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Precio</label>
+            <input type="number" class="form-control" #cajaPrecio
+                   [value]="tratamiento().precio" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Duración (minutos)</label>
+            <input type="number" class="form-control" #cajaDuracion
+                   [value]="tratamiento().duracion" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">URL de la imagen</label>
+            <input type="text" class="form-control" #cajaImagen
+                   [value]="tratamiento().imagen">
+                   [value]="profesional().apellido" required>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Especialidad</label>
+            <select class="form-select" #cajaEsp required>
+              <option value="">Elegí una especialidad</option>
+              @for (e of especialidades(); track e.idEspecialidad) {
+                <option [value]="e.idEspecialidad"
+                        [selected]="e.idEspecialidad === tratamiento().idEspecialidad">
+                  {{ e.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-login">Guardar</button>
+          <a class="btn btn-outline-secondary ms-2" routerLink="/admin/tratamientos">Cancelar</a>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
