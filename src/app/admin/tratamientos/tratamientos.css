@@ -1,0 +1,29 @@
+.foto {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.table {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.accion {
+  background: none;
+  border: none;
+  color: #c5a0a0;
+  font-size: 1.1rem;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.accion:hover {
+  color: #a88585;
+}
+
+.accion.borrar:hover {
+  color: #c0392b;
+}
