@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
+import {CurrencyPipe} from '@angular/common';
 
 @Component({
   selector: 'app-tratamientos-admin',
-  imports: [RouterLink],
+  imports: [RouterLink, CurrencyPipe],
   templateUrl: './tratamientos.html',
   styleUrl: './tratamientos.css'
 })

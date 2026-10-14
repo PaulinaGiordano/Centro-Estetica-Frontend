@@ -8,7 +8,7 @@ import { Component, signal } from "@angular/core";
 })
 
 export class Tratamientos{
-    titulo="Nuestors Tratamientos";
+    titulo="Nuestros Tratamientos";
     tratamientos = signal <any[]>([]);
     
     constructor (http:HttpClient){
