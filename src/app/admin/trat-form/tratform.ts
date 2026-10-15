@@ -11,7 +11,7 @@ import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 })
 export class TratamientoForm {
   especialidades = signal<any[]>([]);
-  tratamiento = signal<any>({ nombre: '', descripcion: '', precio: 0, duracion: 0, idEspecialidad: 0 });
+  tratamiento = signal<any>({ nombre: '', descripcion: '', duracion: 0, idEspecialidad: 0 });
   id = 0;
   error = signal('');
 
@@ -27,11 +27,10 @@ export class TratamientoForm {
     }
   }
 
-  guardar(nombre: string, descripcion: string, precio: number, duracion: number, idEspecialidad: number) {
+  guardar(nombre: string, descripcion: string, duracion: number, idEspecialidad: number) {
     const datos = {
       nombre: nombre,
       descripcion: descripcion,
-      precio: Number(precio),
       duracion: Number(duracion),
       idEspecialidad: Number(idEspecialidad)
     };

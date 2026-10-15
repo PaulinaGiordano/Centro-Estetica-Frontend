@@ -9,8 +9,7 @@
           <div class="alert alert-danger">{{ error() }}</div>
         }
 
-        <form (ngSubmit)="guardar(cajaNombre.value, cajaDescripcion.value, cajaPrecio.valueAsNumber, cajaDuracion.valueAsNumber, +cajaEsp.value)">
-
+        <form (ngSubmit)="guardar(cajaNombre.value, cajaDescripcion.value, cajaDuracion.valueAsNumber, +cajaEsp.value)">
           <div class="mb-3">
             <label class="form-label">Nombre</label>
             <input type="text" class="form-control" #cajaNombre 
@@ -21,12 +20,6 @@
             <label class="form-label">Descripción</label>
             <textarea class="form-control" #cajaDescripcion
                       [value]="tratamiento().descripcion" required></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Precio</label>
-            <input type="number" class="form-control" #cajaPrecio
-                   [value]="tratamiento().precio" required>
           </div>
 
           <div class="mb-3">
