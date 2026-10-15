@@ -21,7 +21,6 @@
     <tbody>
       @for (t of tratamientos(); track t.idTratamiento) {
         <tr>
-          <td><img [src]="t.imagen || '/img/sin-foto.png'" class="foto"></td>
           <td>{{ t.nombre }}</td>
           <td>{{ t.descripcion }}</td>
           <td>{{ t.precio | currency }}</td>
