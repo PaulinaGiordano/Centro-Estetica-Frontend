@@ -10,9 +10,10 @@
         }
 
         <form (ngSubmit)="guardar(cajaNombre.value, cajaDescripcion.value, cajaDuracion.valueAsNumber, +cajaEsp.value)">
+
           <div class="mb-3">
             <label class="form-label">Nombre</label>
-            <input type="text" class="form-control" #cajaNombre 
+            <input type="text" class="form-control" #cajaNombre
                    [value]="tratamiento().nombre" required>
           </div>
 

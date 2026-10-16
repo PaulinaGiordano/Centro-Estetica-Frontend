@@ -12,6 +12,8 @@ import { adminGuard } from './admin/guard';
 import { ProfesionalForm } from './admin/prof-form/form';
 import { TratamientosAdmin } from './admin/tratamientos/tratamientos';
 import { TratamientoForm } from './admin/trat-form/tratform';
+import { Turnos } from './turnos/turnos';
+import { TurnosAdmin } from './admin/turnos/turnos';
 
 export const routes: Routes = [
     { path: '', component: Inicio },
@@ -28,4 +30,6 @@ export const routes: Routes = [
     { path: 'admin/tratamientos', component: TratamientosAdmin, canActivate: [adminGuard] },
     { path: 'admin/tratamientos/nuevo', component: TratamientoForm, canActivate: [adminGuard] },
     { path: 'admin/tratamientos/editar/:id', component: TratamientoForm, canActivate: [adminGuard] },
+    { path: 'turnos', component: Turnos },
+    { path: 'admin/turnos', component: TurnosAdmin, canActivate: [adminGuard] },
 ];

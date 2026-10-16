@@ -1,29 +1,54 @@
-.foto {
-  width: 48px;
-  height: 48px;
-  object-fit: cover;
-  border-radius: 50%;
+table {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.table {
-  background-color: white;
-  border-radius: 12px;
-  overflow: hidden;
+thead th {
+  background-color: #f7e4ea;
+  color: #7a4a5c;
+  font-weight: 600;
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: #fdf6f8;
+}
+
+td, th {
+  padding: 12px 16px;
+  vertical-align: middle;
+}
+
+th:first-child,
+td:first-child {
+  width: 72px;
+}
+
+tbody img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .accion {
-  background: none;
   border: none;
-  color: #c5a0a0;
-  font-size: 1.1rem;
+  background: none;
+  color: #b76e8a;
+  font-size: 18px;
   padding: 4px 8px;
-  cursor: pointer;
 }
 
 .accion:hover {
-  color: #a88585;
+  color: #8c4f67;
 }
 
-.accion.borrar:hover {
-  color: #c0392b;
+.borrar {
+  color: #c0564f;
+}
+
+.borrar:hover {
+  color: #96403a;
 }
