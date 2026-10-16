@@ -11,7 +11,8 @@ import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 })
 export class TratamientoForm {
   especialidades = signal<any[]>([]);
-  tratamiento = signal<any>({ nombre: '', descripcion: '', duracion: 0, idEspecialidad: 0 });  id = 0;
+  tratamiento = signal<any>({ nombre: '', descripcion: '', duracion: 0, idEspecialidad: 0 });
+  id = 0;
   error = signal('');
 
   constructor(private http: HttpClient, private router: Router, ruta: ActivatedRoute) {
