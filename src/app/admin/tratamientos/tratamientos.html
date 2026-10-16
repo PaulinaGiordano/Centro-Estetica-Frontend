@@ -10,10 +10,8 @@
   <table class="table align-middle">
     <thead>
       <tr>
-        <th></th>
         <th>Nombre</th>
         <th>Descripción</th>
-        <th>Precio</th>
         <th>Duración</th>
         <th class="text-end">Acciones</th>
       </tr>
@@ -21,10 +19,8 @@
     <tbody>
       @for (t of tratamientos(); track t.idTratamiento) {
         <tr>
-          <td><img [src]="t.imagen || '/img/sin-foto.png'" class="foto"></td>
           <td>{{ t.nombre }}</td>
           <td>{{ t.descripcion }}</td>
-          <td>{{ t.precio | currency }}</td>
           <td>{{ t.duracion }} minutos</td>
           <td class="text-end">
             <a class="accion" [routerLink]="['/admin/tratamientos/editar', t.idTratamiento]">
