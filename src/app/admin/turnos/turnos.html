@@ -1,0 +1,31 @@
+<div class="container py-5">
+
+  <h2 class="mb-4">Turnos</h2>
+
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Cliente</th>
+        <th>Teléfono</th>
+        <th>Profesional</th>
+        <th>Tratamiento</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (t of turnos(); track t.idTurno) {
+        <tr>
+          <td>{{ t.fecha | date:'dd/MM/yyyy' }}</td>
+          <td>{{ t.hora }}</td>
+          <td>{{ t.cliente }}</td>
+          <td>{{ t.telefono }}</td>
+          <td>{{ t.profesional }}</td>
+          <td>{{ t.tratamiento }}</td>
+          <td>{{ t.estado }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

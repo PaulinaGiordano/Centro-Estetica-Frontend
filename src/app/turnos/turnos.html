@@ -1,0 +1,87 @@
+<div class="container contenedor-turno">
+
+  <h2 class="titulo-turno">Pedí tu turno</h2>
+  <p class="subtitulo-turno">Completá con tus datos</p>
+
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
+
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
+
+  <form (ngSubmit)="reservar(cajaNombre.value, cajaApellido.value, cajaEmail.value, cajaTelefono.value, +cajaTratamiento.value, +cajaProfesional.value, cajaFecha.value, cajaHora.value, cajaObs.value)">
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nombre</label>
+        <input class="form-control" #cajaNombre required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Apellido</label>
+        <input class="form-control" #cajaApellido required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" #cajaEmail required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Teléfono</label>
+        <input class="form-control" #cajaTelefono required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Tratamiento</label>
+        <select class="form-select" #cajaTratamiento (change)="cargarProfesionales(+cajaTratamiento.value)" required>             
+            <option value="">Elegí un tratamiento</option>
+          @for (t of tratamientos(); track t.idTratamiento) {
+            <option [value]="t.idTratamiento">{{ t.nombre }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Profesional</label>
+        <select class="form-select" #cajaProfesional required>
+          <option value="">Elegí un profesional</option>
+          @for (p of profesionales(); track p.idProfesional) {
+            <option [value]="p.idProfesional">{{ p.nombre }} {{ p.apellido }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Fecha</label>
+        <input type="date" class="form-control" #cajaFecha required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Horario</label>
+        <select class="form-select" #cajaHora required>
+          <option value="">Elegí un horario</option>
+          <option value="09:00">09:00</option>
+          <option value="10:00">10:00</option>
+          <option value="11:00">11:00</option>
+          <option value="12:00">12:00</option>
+          <option value="14:00">14:00</option>
+          <option value="15:00">15:00</option>
+          <option value="16:00">16:00</option>
+          <option value="17:00">17:00</option>
+          <option value="18:00">18:00</option>
+        </select>
+      </div>
+
+      <div class="col-12 mb-3">
+        <label class="form-label">Observaciones</label>
+        <textarea class="form-control" rows="3" #cajaObs></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-turno">Reservar turno</button>
+
+  </form>
+</div>

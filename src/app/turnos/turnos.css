@@ -1,0 +1,25 @@
+.contenedor-turno {
+  max-width: 800px;
+  padding-top: 50px;
+  padding-bottom: 60px;
+}
+
+.titulo-turno {
+  margin-bottom: 8px;
+}
+
+.subtitulo-turno {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.btn-turno {
+  background-color: #e8a0b8;
+  color: white;
+  padding: 10px 30px;
+}
+
+.btn-turno:hover {
+  background-color: #d98aa5;
+  color: white;
+}
