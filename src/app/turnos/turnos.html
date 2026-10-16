@@ -36,8 +36,8 @@
 
       <div class="col-md-6 mb-3">
         <label class="form-label">Tratamiento</label>
-        <select class="form-select" #cajaTratamiento (change)="cargarProfesionales(+cajaTratamiento.value)" required>             
-            <option value="">Elegí un tratamiento</option>
+        <select class="form-select" #cajaTratamiento (change)="cargarProfesionales(+cajaTratamiento.value)" required>
+          <option value="">Elegí un tratamiento</option>
           @for (t of tratamientos(); track t.idTratamiento) {
             <option [value]="t.idTratamiento">{{ t.nombre }}</option>
           }
@@ -46,7 +46,7 @@
 
       <div class="col-md-6 mb-3">
         <label class="form-label">Profesional</label>
-        <select class="form-select" #cajaProfesional required>
+        <select class="form-select" #cajaProfesional (change)="cargarHoras(+cajaProfesional.value, cajaFecha.value)" required>
           <option value="">Elegí un profesional</option>
           @for (p of profesionales(); track p.idProfesional) {
             <option [value]="p.idProfesional">{{ p.nombre }} {{ p.apellido }}</option>
@@ -56,23 +56,20 @@
 
       <div class="col-md-6 mb-3">
         <label class="form-label">Fecha</label>
-        <input type="date" class="form-control" #cajaFecha required>
+        <input type="date" class="form-control" #cajaFecha (change)="cargarHoras(+cajaProfesional.value, cajaFecha.value)" required>
       </div>
 
       <div class="col-md-6 mb-3">
         <label class="form-label">Horario</label>
         <select class="form-select" #cajaHora required>
           <option value="">Elegí un horario</option>
-          <option value="09:00">09:00</option>
-          <option value="10:00">10:00</option>
-          <option value="11:00">11:00</option>
-          <option value="12:00">12:00</option>
-          <option value="14:00">14:00</option>
-          <option value="15:00">15:00</option>
-          <option value="16:00">16:00</option>
-          <option value="17:00">17:00</option>
-          <option value="18:00">18:00</option>
+          @for (h of horas(); track h) {
+            <option [value]="h">{{ h }}</option>
+          }
         </select>
+        @if (horas().length === 0) {
+          <small class="text-muted">Elegí profesional y fecha para ver los horarios disponibles.</small>
+        }
       </div>
 
       <div class="col-12 mb-3">

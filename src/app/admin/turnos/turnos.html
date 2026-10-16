@@ -1,6 +1,6 @@
-<div class="container py-5">
+<div class="container my-5">
 
-  <h2 class="mb-4">Turnos</h2>
+  <h2 class="title mb-4">Turnos</h2>
 
   <table class="table align-middle">
     <thead>
@@ -12,6 +12,7 @@
         <th>Profesional</th>
         <th>Tratamiento</th>
         <th>Estado</th>
+        <th class="text-end">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -23,9 +24,22 @@
           <td>{{ t.telefono }}</td>
           <td>{{ t.profesional }}</td>
           <td>{{ t.tratamiento }}</td>
-          <td>{{ t.estado }}</td>
+          <td>
+            <select class="form-select form-select-sm" #cajaEstado
+                    (change)="cambiarEstado(t.idTurno, cajaEstado.value)">
+              <option value="Pendiente" [selected]="t.estado === 'Pendiente'">Pendiente</option>
+              <option value="Confirmado" [selected]="t.estado === 'Confirmado'">Confirmado</option>
+              <option value="Cancelado" [selected]="t.estado === 'Cancelado'">Cancelado</option>
+            </select>
+          </td>
+          <td class="text-end">
+            <button class="accion borrar" (click)="borrar(t.idTurno)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
         </tr>
       }
     </tbody>
   </table>
+
 </div>

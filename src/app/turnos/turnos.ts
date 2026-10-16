@@ -11,15 +11,35 @@ import { FormsModule } from '@angular/forms';
 export class Turnos {
   tratamientos = signal<any[]>([]);
   profesionales = signal<any[]>([]);
+  horas = signal<string[]>([]);
   mensaje = signal('');
   error = signal('');
 
   constructor(private http: HttpClient) {
     this.http.get<any[]>('http://localhost:3000/tratamientos')
       .subscribe(datos => this.tratamientos.set(datos));
+  }
 
-    this.http.get<any[]>('http://localhost:3000/profesionales')
+  cargarProfesionales(idTratamiento: number) {
+    this.horas.set([]);
+
+    if (!idTratamiento) {
+      this.profesionales.set([]);
+      return;
+    }
+
+    this.http.get<any[]>('http://localhost:3000/profesionales/tratamiento/' + idTratamiento)
       .subscribe(datos => this.profesionales.set(datos));
+  }
+
+  cargarHoras(idProfesional: number, fecha: string) {
+    if (!idProfesional || !fecha) {
+      this.horas.set([]);
+      return;
+    }
+
+    this.http.get<string[]>('http://localhost:3000/profesionales/' + idProfesional + '/horarios/' + fecha)
+      .subscribe(datos => this.horas.set(datos));
   }
 
   reservar(nombre: string, apellido: string, email: string, telefono: string,
@@ -44,9 +64,4 @@ export class Turnos {
       }
     });
   }
-
-  cargarProfesionales(idTratamiento: number) {
-    this.http.get<any[]>('http://localhost:3000/profesionales/tratamiento/' + idTratamiento)
-        .subscribe(datos => this.profesionales.set(datos));
-    }
 }
