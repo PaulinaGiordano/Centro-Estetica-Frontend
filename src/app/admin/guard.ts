@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 export const adminGuard = () => {
   const router = inject(Router);
 
-  if (localStorage.getItem('admin')) {
+  if (localStorage.getItem('token')) {
     return true;
   }
 

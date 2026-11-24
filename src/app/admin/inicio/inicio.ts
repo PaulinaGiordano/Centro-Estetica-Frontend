@@ -5,13 +5,13 @@ import { RouterLink, Router } from '@angular/router';
   selector: 'app-inicio-admin',
   imports: [RouterLink],
   templateUrl: './inicio.html',
-  styleUrl: './inicio.css'
+  styleUrl: './inicio.css',
 })
 export class InicioAdmin {
   constructor(private router: Router) {}
 
   salir() {
-    localStorage.removeItem('admin');
+    localStorage.removeItem('token');
     this.router.navigate(['/admin/login']);
   }
 }
