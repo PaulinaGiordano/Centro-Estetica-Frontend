@@ -1,0 +1,70 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+      <div class="caja">
+        <h2 class="title text-center mb-4">Crear cuenta</h2>
+
+        @if (error()) {
+          <div class="alert alert-danger">{{ error() }}</div>
+        }
+
+        @if (mensaje()) {
+          <div class="alert alert-success">
+            {{ mensaje() }} <a routerLink="/login">Iniciar sesión</a>
+          </div>
+        } @else {
+          <form
+            (ngSubmit)="
+              registrar(
+                cajaNombre.value,
+                cajaApellido.value,
+                cajaEmail.value,
+                cajaTelefono.value,
+                cajaContra.value,
+                cajaContra2.value
+              )
+            "
+          >
+            <div class="row">
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Nombre</label>
+                <input class="form-control" #cajaNombre required />
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Apellido</label>
+                <input class="form-control" #cajaApellido required />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" #cajaEmail required />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Teléfono</label>
+              <input class="form-control" #cajaTelefono required />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Contraseña</label>
+              <input type="password" class="form-control" #cajaContra required minlength="6" />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">Repetí la contraseña</label>
+              <input type="password" class="form-control" #cajaContra2 required />
+            </div>
+
+            <button type="submit" class="btn btn-login w-100">Crear cuenta</button>
+          </form>
+
+          <p class="text-center mt-3 mb-0">
+            ¿Ya tenés cuenta? <a routerLink="/login">Iniciá sesión</a>
+          </p>
+        }
+      </div>
+    </div>
+  </div>
+</div>

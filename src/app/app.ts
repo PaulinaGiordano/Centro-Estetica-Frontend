@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   imports: [RouterOutlet, RouterLink],
@@ -9,4 +9,16 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('centro-estetica-angular');
+
+  constructor(private router: Router) {}
+
+  get usuario() {
+    return JSON.parse(localStorage.getItem('usuario') || 'null');
+  }
+
+  salir() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    this.router.navigate(['/']);
+  }
 }

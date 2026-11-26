@@ -8,28 +8,37 @@ import { Tratamientos } from './tratamientos/tratamientos';
 import { Login } from './admin/login/login';
 import { InicioAdmin } from './admin/inicio/inicio';
 import { ProfesionalesAdmin } from './admin/profesionales/profesionales';
-import { adminGuard } from './admin/guard';
+import { adminGuard, clienteGuard } from './admin/guard';
 import { ProfesionalForm } from './admin/prof-form/form';
 import { TratamientosAdmin } from './admin/tratamientos/tratamientos';
 import { TratamientoForm } from './admin/trat-form/tratform';
 import { Turnos } from './turnos/turnos';
 import { TurnosAdmin } from './admin/turnos/turnos';
+import { HorariosAdmin } from './admin/horarios/horarios';
+import { ClientesAdmin } from './admin/clientes/clientes';
+import { Registro } from './registro/registro';
+import { MisTurnos } from './mis-turnos/mis-turnos';
 
 export const routes: Routes = [
-    { path: '', component: Inicio },
-    { path: 'nosotros', component: Nosotros },
-    { path: 'profesionales', component: Profesionales },
-    { path: 'preguntas', component: Preguntas },
-    { path: 'contacto', component: Contacto },
-    { path: 'tratamientos', component: Tratamientos },
-    { path: 'admin/login', component: Login },
-    { path: 'admin', component: InicioAdmin, canActivate: [adminGuard] },
-    { path: 'admin/profesionales', component: ProfesionalesAdmin, canActivate: [adminGuard] },
-    { path: 'admin/profesionales/nuevo', component: ProfesionalForm, canActivate: [adminGuard] },
-    { path: 'admin/profesionales/editar/:id', component: ProfesionalForm, canActivate: [adminGuard] },
-    { path: 'admin/tratamientos', component: TratamientosAdmin, canActivate: [adminGuard] },
-    { path: 'admin/tratamientos/nuevo', component: TratamientoForm, canActivate: [adminGuard] },
-    { path: 'admin/tratamientos/editar/:id', component: TratamientoForm, canActivate: [adminGuard] },
-    { path: 'turnos', component: Turnos },
-    { path: 'admin/turnos', component: TurnosAdmin, canActivate: [adminGuard] },
+  { path: '', component: Inicio },
+  { path: 'nosotros', component: Nosotros },
+  { path: 'profesionales', component: Profesionales },
+  { path: 'preguntas', component: Preguntas },
+  { path: 'contacto', component: Contacto },
+  { path: 'tratamientos', component: Tratamientos },
+  { path: 'login', component: Login },
+  { path: 'admin/login', component: Login },
+  { path: 'registro', component: Registro },
+  { path: 'mis-turnos', component: MisTurnos, canActivate: [clienteGuard] },
+  { path: 'admin', component: InicioAdmin, canActivate: [adminGuard] },
+  { path: 'admin/profesionales', component: ProfesionalesAdmin, canActivate: [adminGuard] },
+  { path: 'admin/profesionales/nuevo', component: ProfesionalForm, canActivate: [adminGuard] },
+  { path: 'admin/profesionales/editar/:id', component: ProfesionalForm, canActivate: [adminGuard] },
+  { path: 'admin/tratamientos', component: TratamientosAdmin, canActivate: [adminGuard] },
+  { path: 'admin/tratamientos/nuevo', component: TratamientoForm, canActivate: [adminGuard] },
+  { path: 'admin/tratamientos/editar/:id', component: TratamientoForm, canActivate: [adminGuard] },
+  { path: 'turnos', component: Turnos },
+  { path: 'admin/turnos', component: TurnosAdmin, canActivate: [adminGuard] },
+  { path: 'admin/profesionales/:id/horarios', component: HorariosAdmin, canActivate: [adminGuard] },
+  { path: 'admin/clientes', component: ClientesAdmin, canActivate: [adminGuard] },
 ];

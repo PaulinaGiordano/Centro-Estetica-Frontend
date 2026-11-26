@@ -1,29 +1,35 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrl: './login.css',
 })
 export class Login {
   error = signal('');
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   entrar(email: string, contra: string) {
-    this.http.post('http://localhost:3000/admin/login', {
-      email: email,
-      contra: contra
-    }).subscribe({
-      next: () => {
-        localStorage.setItem('admin', 'si');
-        this.router.navigate(['/admin']);
+    this.http.post<any>('http://localhost:3000/auth/login', { email, contra }).subscribe({
+      next: (respuesta) => {
+        localStorage.setItem('token', respuesta.token);
+        localStorage.setItem('usuario', JSON.stringify(respuesta.usuario));
+
+        if (respuesta.usuario.rol === 'admin') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/mis-turnos']);
+        }
       },
-      error: () => this.error.set('Email o contraseña incorrectos')
+      error: (e) => this.error.set(e.error?.mensaje || 'Email o contraseña incorrectos'),
     });
   }
 }
