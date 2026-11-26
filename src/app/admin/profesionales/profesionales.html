@@ -1,5 +1,4 @@
 <div class="container my-5">
-
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="title">Profesionales</h2>
     <a class="btn btn-login" routerLink="/admin/profesionales/nuevo">
@@ -19,10 +18,17 @@
     <tbody>
       @for (p of profesionales(); track p.idProfesional) {
         <tr>
-          <td><img [src]="p.imagen || '/img/sin-foto.png'" class="foto"></td>
+          <td><img [src]="p.imagen || '/img/sin-foto.png'" class="foto" /></td>
           <td>{{ p.nombre }} {{ p.apellido }}</td>
           <td>{{ p.especialidad }}</td>
           <td class="text-end">
+            <a
+              class="accion"
+              [routerLink]="['/admin/profesionales', p.idProfesional, 'horarios']"
+              title="Horarios"
+            >
+              <i class="bi bi-clock"></i>
+            </a>
             <a class="accion" [routerLink]="['/admin/profesionales/editar', p.idProfesional]">
               <i class="bi bi-pencil"></i>
             </a>
@@ -34,5 +40,4 @@
       }
     </tbody>
   </table>
-
 </div>

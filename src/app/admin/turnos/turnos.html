@@ -2,6 +2,28 @@
 
   <h2 class="title mb-4">Turnos</h2>
 
+  <div class="row g-2 align-items-end mb-4">
+    <div class="col-12 col-md-4">
+      <label class="form-label">Estado</label>
+      <select class="form-select" #cajaFiltroEstado>
+        <option value="">Todos</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Confirmado">Confirmado</option>
+        <option value="Cancelado">Cancelado</option>
+      </select>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <label class="form-label">Fecha</label>
+      <input type="date" class="form-control" #cajaFiltroFecha>
+    </div>
+
+    <div class="col-12 col-md-4 d-flex gap-2">
+      <button class="btn btn-login" (click)="filtrar(cajaFiltroEstado.value, cajaFiltroFecha.value)">Filtrar</button>
+      <button class="btn btn-outline-secondary" (click)="cajaFiltroEstado.value = ''; cajaFiltroFecha.value = ''; limpiar()">Limpiar</button>
+    </div>
+  </div>
+
   <table class="table align-middle">
     <thead>
       <tr>
@@ -37,6 +59,10 @@
               <i class="bi bi-trash"></i>
             </button>
           </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="8" class="text-center text-muted">No hay turnos con esos filtros.</td>
         </tr>
       }
     </tbody>

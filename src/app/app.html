@@ -1,12 +1,25 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-
     <a class="navbar-brand title" routerLink="/">
-      <img src="/img/logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      <img
+        src="/img/logo.jpg"
+        alt="Logo"
+        width="30"
+        height="24"
+        class="d-inline-block align-text-top"
+      />
       Lumina Studio
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -31,10 +44,18 @@
           <a class="nav-link" routerLink="/turnos">Turnos</a>
         </li>
       </ul>
-      <a href="#" class="btn btn-login">Iniciar sesión</a>
+      <div class="d-flex align-items-center gap-2">
+        @if (usuario?.rol === 'cliente') {
+          <a class="nav-link" routerLink="/mis-turnos">Mis turnos</a>
+          <button class="btn btn-login" (click)="salir()">Salir</button>
+        } @else if (usuario?.rol === 'admin') {
+          <a class="btn btn-login" routerLink="/admin">Panel</a>
+          <button class="btn btn-outline-secondary" (click)="salir()">Salir</button>
+        } @else {
+          <a class="btn btn-login" routerLink="/login">Iniciar sesión</a>
+        }
+      </div>
     </div>
-
   </div>
 </nav>
 <router-outlet></router-outlet>
-

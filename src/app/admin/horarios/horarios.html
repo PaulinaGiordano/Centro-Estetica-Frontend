@@ -1,0 +1,101 @@
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="title">
+      Horarios
+      @if (profesional()) {
+        de {{ profesional().nombre }} {{ profesional().apellido }}
+      }
+    </h2>
+    <a class="btn btn-outline-secondary" routerLink="/admin/profesionales">Volver</a>
+  </div>
+
+  <div class="caja mb-4">
+    <h5 class="mb-3">{{ editando() ? 'Editar horario' : 'Nuevo horario' }}</h5>
+
+    @if (error()) {
+      <div class="alert alert-danger">{{ error() }}</div>
+    }
+
+    <form
+      #formulario
+      (ngSubmit)="guardar(cajaDia.value, cajaInicio.value, cajaFin.value, formulario)"
+    >
+      <div class="row g-2 align-items-end">
+        <div class="col-12 col-md-3">
+          <label class="form-label">Día</label>
+          <select class="form-select" #cajaDia required>
+            <option value="">Elegí un día</option>
+            @for (d of dias; track d) {
+              <option [value]="d" [selected]="d === editando()?.dia_semana">{{ d }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <label class="form-label">Desde</label>
+          <input
+            type="time"
+            class="form-control"
+            #cajaInicio
+            [value]="editando()?.hora_inicio ?? ''"
+            required
+          />
+        </div>
+
+        <div class="col-6 col-md-3">
+          <label class="form-label">Hasta</label>
+          <input
+            type="time"
+            class="form-control"
+            #cajaFin
+            [value]="editando()?.hora_fin ?? ''"
+            required
+          />
+        </div>
+
+        <div class="col-12 col-md-3 d-flex gap-2">
+          <button type="submit" class="btn btn-login">Guardar</button>
+          @if (editando()) {
+            <button type="button" class="btn btn-outline-secondary" (click)="cancelar(formulario)">
+              Cancelar
+            </button>
+          }
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Día</th>
+        <th>Desde</th>
+        <th>Hasta</th>
+        <th class="text-end">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (h of horarios(); track h.idHorario) {
+        <tr>
+          <td>{{ h.dia_semana }}</td>
+          <td>{{ h.hora_inicio.substring(0, 5) }}</td>
+          <td>{{ h.hora_fin.substring(0, 5) }}</td>
+          <td class="text-end">
+            <button class="accion" (click)="editar(h)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="accion borrar" (click)="borrar(h.idHorario)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="4" class="text-center text-muted">
+            Este profesional todavía no tiene horarios.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

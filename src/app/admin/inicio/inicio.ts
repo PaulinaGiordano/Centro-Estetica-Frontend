@@ -12,7 +12,7 @@ export class InicioAdmin {
 
   salir() {
     localStorage.removeItem('token');
-    this.router.navigate(['/admin/login']);
+    localStorage.removeItem('usuario');
+    this.router.navigate(['/login']);
   }
 }
-

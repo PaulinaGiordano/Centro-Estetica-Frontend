@@ -10,14 +10,36 @@ import { DatePipe } from '@angular/common';
 })
 export class TurnosAdmin {
   turnos = signal<any[]>([]);
+  filtroEstado = '';
+  filtroFecha = '';
 
   constructor(private http: HttpClient) {
     this.cargar();
   }
 
   cargar() {
-    this.http.get<any[]>('http://localhost:3000/turnos')
+    const params: any = {};
+    if (this.filtroEstado) {
+      params.estado = this.filtroEstado;
+    }
+    if (this.filtroFecha) {
+      params.fecha = this.filtroFecha;
+    }
+
+    this.http.get<any[]>('http://localhost:3000/turnos', { params })
       .subscribe(datos => this.turnos.set(datos));
+  }
+
+  filtrar(estado: string, fecha: string) {
+    this.filtroEstado = estado;
+    this.filtroFecha = fecha;
+    this.cargar();
+  }
+
+  limpiar() {
+    this.filtroEstado = '';
+    this.filtroFecha = '';
+    this.cargar();
   }
 
   borrar(id: number) {

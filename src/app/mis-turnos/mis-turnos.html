@@ -1,0 +1,45 @@
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="title">Mis turnos</h2>
+    <a class="btn btn-login" routerLink="/turnos"> <i class="bi bi-plus-lg"></i> Sacar un turno </a>
+  </div>
+
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
+
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Tratamiento</th>
+        <th>Profesional</th>
+        <th>Estado</th>
+        <th class="text-end"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (t of turnos(); track t.idTurno) {
+        <tr>
+          <td>{{ t.fecha | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ t.hora.substring(0, 5) }}</td>
+          <td>{{ t.tratamiento }}</td>
+          <td>{{ t.profesional }} {{ t.profesionalApellido }}</td>
+          <td>{{ t.estado }}</td>
+          <td class="text-end">
+            @if (t.estado !== 'Cancelado') {
+              <button class="btn btn-sm btn-outline-danger" (click)="cancelar(t.idTurno)">
+                Cancelar
+              </button>
+            }
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="text-center text-muted">Todavía no sacaste ningún turno.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
