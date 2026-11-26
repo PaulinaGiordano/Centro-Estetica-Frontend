@@ -15,3 +15,4 @@ export class InicioAdmin {
     this.router.navigate(['/admin/login']);
   }
 }
+
